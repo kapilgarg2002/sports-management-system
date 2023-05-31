@@ -1,0 +1,206 @@
+CREATE TABLE STUDENT(ROLL_NO NUMBER(10) PRIMARY KEY, FIRST_NAME VARCHAR(24), LAST_NAME VARCHAR(24),MOBILE_NO NUMBER(10),BRANCH VARCHAR(12),SUBGROUP varchar(5), HOSTEL VARCHAR(12),SEM_YEAR NUMBER(4));
+
+CREATE TABLE FACULTY(FACULTY_ID NUMBER(24) PRIMARY KEY, FIRST_NAME VARCHAR(24), LAST_NAME VARCHAR(24),DEPT VARCHAR(12),RESIDENT VARCHAR(5),MOBILE_NO NUMBER(10));
+
+CREATE TABLE EQUIP(EQUIP_ID NUMBER(3) PRIMARY KEY, E_NAME VARCHAR(20),BRAND VARCHAR(20),AVAIL VARCHAR(5),DAMAGE VARCHAR(20));
+
+CREATE TABLE COURT(COURT_ID NUMBER(3) PRIMARY KEY, C_NAME VARCHAR(20),AVAIL VARCHAR(5),CLEANING VARCHAR(5));
+
+CREATE TABLE ISSUED_FACULTY(EQUIP_ID NUMBER(3) REFERENCES EQUIP(EQUIP_ID) ON DELETE CASCADE, FACULTY_ID NUMBER(24) REFERENCES FACULTY(FACULTY_ID) ON DELETE CASCADE);
+
+CREATE TABLE ISSUED_STUDENT(EQUIP_ID NUMBER(3) REFERENCES EQUIP(EQUIP_ID) ON DELETE CASCADE, ROLL_NO NUMBER(10) REFERENCES STUDENT(ROLL_NO) ON DELETE CASCADE);
+
+CREATE TABLE BOOKED_BY_FACULTY(COURT_ID NUMBER(3) REFERENCES COURT(COURT_ID) ON DELETE CASCADE, FACULTY_ID NUMBER(24) REFERENCES FACULTY(FACULTY_ID) ON DELETE CASCADE);
+
+CREATE TABLE BOOKED_BY_STUDENT(COURT_ID NUMBER(3) REFERENCES COURT(COURT_ID) ON DELETE CASCADE, ROLL_NO NUMBER(10) REFERENCES STUDENT(ROLL_NO) ON DELETE CASCADE);
+
+
+INSERT INTO STUDENT VALUES(102015102,'ABHISHEK',PURI,8767865665,ENC,5,'M',2);
+INSERT INTO STUDENT VALUES(102015098,KAPIL,GARG,8767865985,ENC,'3','O',3);
+INSERT INTO STUDENT VALUES(102002341,'AADARSH','KUMAR',9367865665,'CSE','21','O',2);
+INSERT INTO STUDENT VALUES(101809876,'HRITIK','SAINI',7657865665,'ECE','17','K',4);
+INSERT INTO STUDENT VALUES(102012334,'ANUSHKA','DEWANGAN',9767865665,'BIO','2','PG',2);
+INSERT INTO STUDENT VALUES(101903512,'SASHREEK','CHAUHAN',2767865665,'CSBS','12','DS',3);
+INSERT INTO STUDENT VALUES(102003534,'GAUTAM','JAIN',9412865665,'ENC','3','M',2);
+INSERT INTO STUDENT VALUES(102023476,'KINJAL','GOYAL',8543865665,'MECHATRONICS','9','N',2);
+INSERT INTO STUDENT VALUES(101808765,'TANISH','GARG',9761665665,'COE','2','DS',4);
+INSERT INTO STUDENT VALUES(102103421,'PRASHANT','BHALLA',7767865665,'CSE','5','L',1);
+INSERT INTO STUDENT VALUES(102003527,'AAYUSH','ASREY',9876865665,'CSBS','29','C',2);
+INSERT INTO STUDENT VALUES(102005432,'SRIJAN','GUPTA',7865865665,'ME','8','O',2);
+INSERT INTO STUDENT VALUES(101908761,'ARCHIT','RATHI',8897865665,'EEC','20','M',3);
+INSERT INTO STUDENT VALUES(102009756,'ESHITA','ARORA',9454865665,'ECE','11','G',2);
+INSERT INTO STUDENT VALUES(102103530,'AARUSHI','ABROL',9767865665,'ENC','25','I',1);
+INSERT INTO STUDENT VALUES(101832147,'LAVANYA','GUPTA',6137865665,'BIO','21','N',4);
+INSERT INTO STUDENT VALUES(102019876,'RAGHAV','AGGRAWAL',9877865665,'CSE','22','H',2);
+INSERT INTO STUDENT VALUES(102102176,'RAHUL','KAUSHIK',8767867777,'COE','12','DS',1);
+INSERT INTO STUDENT VALUES(102003542,'AGRIM','SOOD',8767800000,'CSBS','19','M',2);
+INSERT INTO STUDENT VALUES(102103538,'AARYAN','JAIN',8760003215,'ME','1','J',1);
+
+INSERT INTO FACULTY VALUES(1001,'SHUBHAM','GOEL','CS','Y',8768805025);
+INSERT INTO FACULTY VALUES(1002,'ANIL KUMAR','VERMA','ME','N',8722265985);
+INSERT INTO FACULTY VALUES(1003,'RUCHIKA','LAMBA','CS','N',9368989665);
+INSERT INTO FACULTY VALUES(1004,'NIDHI','KALRA','ELECTRICAL','Y',7657861115);
+INSERT INTO FACULTY VALUES(1005,'VINAY','ARORA','BIO','Y',9767864050);
+INSERT INTO FACULTY VALUES(1006,'MAMTA','SHARMA','CS','N',9997865665);
+INSERT INTO FACULTY VALUES(1007,'TANVI','DWIVEDI','ELECTRICAL','Y',9412865005);
+INSERT INTO FACULTY VALUES(1008,'MANJU','KHURRANA','ME','Y',8543865115);
+INSERT INTO FACULTY VALUES(1009,'GEETA','KASANA','BIO','N',9760000665);
+INSERT INTO FACULTY VALUES(1010,'MANINDER','SINGH','CHEM','Y',7767000665);
+INSERT INTO FACULTY VALUES(1011,'AASHIMA','ANAND','CS','Y',9876777665);
+INSERT INTO FACULTY VALUES(1012,'SHARAD','SAXENA','ME','N',7865999665);
+
+INSERT INTO EQUIP VALUES(1,'badminton rackets','YONEX','Y','Y');
+INSERT INTO EQUIP VALUES(2,'badminton shuttle','YONEX','N','N');
+INSERT INTO EQUIP VALUES(3,'BASKETBALL','NIVIA','Y','N');
+INSERT INTO EQUIP VALUES(4,'FOOTBALL','NIKE','Y','N');
+INSERT INTO EQUIP VALUES(5,'TENNIS BALL','HEAD','Y','N');
+INSERT INTO EQUIP VALUES(6,'TENNIS RACKET','WILSON','Y','Y');
+INSERT INTO EQUIP VALUES(7,'TENNIS TABLE','YASAKA','N','N');
+INSERT INTO EQUIP VALUES(8,'HOCKEY STICKS','ESPN','N','Y');
+INSERT INTO EQUIP VALUES(9,'HOCKEY BALL','ESPN','N','N');
+INSERT INTO EQUIP VALUES(10,'GLOVES','ADIDAS','N','N');
+INSERT INTO EQUIP VALUES(11,'CRICKET BAT','MRF','Y','Y');
+INSERT INTO EQUIP VALUES(12,'CRICKET BALL','SG','Y','N');
+
+INSERT INTO COURT VALUES(101,'BADMINTON','Y','N');
+INSERT INTO COURT VALUES(102,'HOCKEY','N','Y');
+INSERT INTO COURT VALUES(103,'FOOTBALL','Y','N');
+INSERT INTO COURT VALUES(104,'CRICKET','Y','N');
+INSERT INTO COURT VALUES(105,'SWIMMING POOL','N','Y');
+INSERT INTO COURT VALUES(106,'BASKETBALL','Y','N');
+INSERT INTO COURT VALUES(107,'TENNIS','Y','Y');
+INSERT INTO COURT VALUES(108,'TABLE TENNIS','N','Y');
+
+INSERT INTO ISSUED_FACULTY VALUES(1,1002);
+INSERT INTO ISSUED_FACULTY VALUES(3,1008);
+INSERT INTO ISSUED_FACULTY VALUES(4,1003);
+INSERT INTO ISSUED_FACULTY VALUES(9,1011);
+INSERT INTO ISSUED_FACULTY VALUES(12,1012);
+INSERT INTO ISSUED_FACULTY VALUES(10,1002);
+
+INSERT INTO ISSUED_STUDENT VALUES(2,102003534);
+INSERT INTO ISSUED_STUDENT VALUES(5,101809876);
+INSERT INTO ISSUED_STUDENT VALUES(6,102003536);
+INSERT INTO ISSUED_STUDENT VALUES(7,101903512);
+INSERT INTO ISSUED_STUDENT VALUES(8,102103421);
+INSERT INTO ISSUED_STUDENT VALUES(11,102003534);
+
+INSERT INTO BOOKED_BY_FACULTY VALUES(102,1003);
+INSERT INTO BOOKED_BY_FACULTY VALUES(105,1007);
+INSERT INTO BOOKED_BY_FACULTY VALUES(101,1011);
+INSERT INTO BOOKED_BY_FACULTY VALUES(107,1001);
+
+INSERT INTO BOOKED_BY_STUDENT VALUES(103,102103538);
+INSERT INTO BOOKED_BY_STUDENT VALUES(104,101809876);
+INSERT INTO BOOKED_BY_STUDENT VALUES(106,101903654);
+INSERT INTO BOOKED_BY_STUDENT VALUES(108,102012334);
+
+
+create or replace procedure insert_student(rno in number, fname in varchar, lname in varchar, mobno in number, branch in varchar, sgrp varchar, hostel varchar, syear number) is
+begin
+	insert into student values(rno, fname, lname, mobno, branch, sgrp, hostel, syear);
+end;
+
+create or replace procedure insert_faculty(fid in number, fname in varchar, lname in number, dept in varchar, resident in varchar, mno in number) is
+begin
+	insert into faculty values(fid, fname, lname, dept, resident, mno);
+end;
+
+create or replace procedure update_faculty(fid in number, mno in number) is
+begin
+	update faculty set mobile_no=mno where faculty_id=fid;
+end;
+
+create or replace procedure update_student_mob(rno in number, mno in number) is
+begin
+	update student set mobile_no=mno where roll_no=rno;
+end;
+
+
+create or replace procedure update_student_hostel(rno in number, hos in varchar) is
+begin
+	update student set hostel=hos where roll_no=rno;
+end;
+
+
+create or replace procedure update_student_branch(rno in number, br in varchar) is
+begin
+	update student set branch=br where roll_no=rno;
+end;
+
+
+create or replace procedure update_student_year(rno in number, yr in number) is
+begin
+	update student set sem_year=yr where roll_no=rno;
+end;
+
+
+create or replace procedure update_student_sgp(rno in number, sgp in varchar) is
+begin
+	update student set subgroup=sgp where roll_no=rno;
+end;
+
+create or replace procedure delete_student(rno in number) is
+begin
+	delete from student where roll_no=rno;
+end;
+
+create or replace procedure delete_faculty(fid in number) is
+begin
+	delete from faculty where faculty_id=fid;
+end;
+
+
+create or replace procedure insert_equipment(equip_id in number, equip_name in varchar, brand in varchar, avail in varchar, damage in varchar)
+is
+begin
+	insert into equip values(equip_id, equip_name, brand, avail, damage);
+end;
+
+create or replace procedure insert_court(court_id in number, c_name in varchar, avail in varchar, cleaning in varchar)
+is
+begin
+	insert into court values(court_id, c_name, avail, cleaning);
+end;
+
+create or replace procedure delete_equipment(e_id in number)
+is
+begin
+	delete from equip where equip_id = e_id;
+end;
+
+create or replace procedure delete_court(c_id in number)
+is
+begin
+	delete from court where court_id = c_id;
+end;
+
+create or replace procedure update_equipment_avail(e_id in number, availability in varchar)
+is
+begin
+	update equip set avail = availability where equip_id = e_id;
+end;
+
+create or replace procedure update_equipment_state(e_id in number, dam in varchar)
+is
+begin
+	Update equip set damage = dam where equip_id = e_id;
+end;
+
+create or replace procedure update_court_avail(c_id in number, availability in varchar)
+is
+begin
+	update court set avail = availability where court_id = c_id;
+end;
+
+create or replace procedure update_court_clean(c_id in number, clean in varchar)
+is
+begin
+	update court set cleaning = clean where court_id = c_id;
+end;
+
+
+
+
+
+
